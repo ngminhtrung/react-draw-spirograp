@@ -81,4 +81,3 @@ trong đó:
 - offsetHole
 - color
 - isDisplayed: ứng với toggle button ON/OFF
-
