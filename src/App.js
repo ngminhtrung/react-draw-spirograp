@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Component/Header';
+import MenuMain from './Component/Menu-Main';
+import Drawing from './Component/Drawing';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      backgroundColor: "lightyellow",
+      ratio: 5,
+      holeOffsetDistance: 70,
+      color: "black",
+      animationDuration: 1000
+    }
+    this.changeGeneralConfig = this.changeGeneralConfig.bind(this);
+  }
+
+  changeGeneralConfig(generalConfig) {
+    this.setState({
+      backgroundColor: generalConfig.backgroundColor,
+      color: generalConfig.color,
+      animationDuration: generalConfig.animationDuration,
+      ratio: generalConfig.ratio,
+      holeOffsetDistance: generalConfig.holeOffsetDistance
+    });
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App ui container">
+        <div className="ui centered grid">
+          <Header />
+          <MenuMain onGeneralConfigChange={this.changeGeneralConfig}/>
+          <Drawing config={this.state}/>
+        </div>
       </div>
     );
   }
