@@ -12,19 +12,13 @@ class App extends Component {
       ratio: 5,
       holeOffsetDistance: 70,
       color: "black",
-      animationDuration: 1000
+      animationDuration: 1500
     }
     this.changeGeneralConfig = this.changeGeneralConfig.bind(this);
   }
 
   changeGeneralConfig(generalConfig) {
-    this.setState({
-      backgroundColor: generalConfig.backgroundColor,
-      color: generalConfig.color,
-      animationDuration: generalConfig.animationDuration,
-      ratio: generalConfig.ratio,
-      holeOffsetDistance: generalConfig.holeOffsetDistance
-    });
+    this.setState(generalConfig);
   }
 
 

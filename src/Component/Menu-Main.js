@@ -4,11 +4,11 @@ class MenuMain extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            backgroundColor: 'lightyellow',
-            color: 'black',
-            ratio: 10,
-            holeOffsetDistance: 50,
-            animationDuration: 1000
+            backgroundColor: "lightyellow",
+            ratio: 5,
+            holeOffsetDistance: 70,
+            color: "black",
+            animationDuration: 1500
         };
         this.setConfig = this.setConfig.bind(this);
     }
@@ -17,13 +17,8 @@ class MenuMain extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
     render() {
-        const newConfig = {
-            backgroundColor: this.state.backgroundColor,
-            color: this.state.color,
-            ratio: this.state.ratio,
-            holeOffsetDistance: this.state.holeOffsetDistance,
-            animationDuration: this.state.animationDuration
-        }
+        const newConfig = {...this.state};
+
         return (
             <div className="row orange">
                 <div className="two wide column">
@@ -39,13 +34,13 @@ class MenuMain extends Component {
                         <input
                             type="color"
                             name="backgroundColor"
-                            value={this.state.backgroundColor} />
+                            defaultValue={this.state.backgroundColor} />
 
                         <label> Màu viền </label>
                         <input
                             type="color"
                             name="color"
-                            value={this.state.color}
+                            defaultValue={this.state.color}
                         />
                         <label> Tốc độ vẽ </label>
                         <input
@@ -53,7 +48,7 @@ class MenuMain extends Component {
                             min="0"
                             max="5000"
                             name="animationDuration"
-                            value={this.state.animationDuration}
+                            defaultValue={this.state.animationDuration}
                         />
                         <label> Tỷ lệ </label>
                         <input
@@ -61,7 +56,7 @@ class MenuMain extends Component {
                             min="10"
                             max="100"
                             name="ratio"
-                            value={this.state.ratio}
+                            defaultValue={this.state.ratio}
                         />
                         <label> Offset </label>
                         <input
@@ -69,7 +64,7 @@ class MenuMain extends Component {
                             min="10"
                             max="100"
                             name="holeOffsetDistance"
-                            value={this.state.holeOffsetDistance}
+                            defaultValue={this.state.holeOffsetDistance}
                         />
                     </form>
                 </div>

@@ -5,11 +5,27 @@ import {
     easeLinear as d3EaseLinear,
 } from 'd3';
 
-class Siprograph extends Component {
+class Spirograph extends Component {
     constructor(props) {
         super(props);
         this.createSpirographInside = this.createSpirographInside.bind(this);
         this.createSvgPath = this.createSvgPath.bind(this);
+        this.createSpirograph = this.createSpirograph.bind(this);
+    }
+
+    componentDidMount() {
+        this.createSpirograph(this.props);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+
+        this.createSpirograph(nextProps);
+
+        return true;
+    }
+
+    render() {
+        return <g className="chart" />;
     }
 
     createSpirographOutside(fixedCircleRadius, k, holeOffsetDistance) {
@@ -76,9 +92,7 @@ class Siprograph extends Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        const { ratio, holeOffsetDistance, color, animationDuration } = nextProps;
-
+    createSpirograph(config) {
         let path;
         let svgPath;
         let totalLength;
@@ -87,12 +101,12 @@ class Siprograph extends Component {
             height: 600
         };
 
-        svgPath = this.createSvgPath(size, color );
+        svgPath = this.createSvgPath(size, config.color );
 
         path = this.createSpirographInside(
             100,
-            ratio,
-            holeOffsetDistance);
+            config.ratio,
+            config.holeOffsetDistance);
 
         let myArc;
 
@@ -105,16 +119,13 @@ class Siprograph extends Component {
             .style("stroke-dasharray", `${totalLength} ${totalLength}`)
             .style("stroke-dashoffset", totalLength)
             .transition()
-            .duration(animationDuration)
+            .duration(config.animationDuration)
             .ease(d3EaseLinear)
             .style("stroke-dashoffset", 0)
-
-        return true;
+        
     }
 
-    render() {
-        return <g className="chart" />;
-    }
+    
 }
 
-export default Siprograph;
+export default Spirograph;
