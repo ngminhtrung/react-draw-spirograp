@@ -141,3 +141,4 @@ shouldComponentUpdate(nextProps, nextState) {
     - Bổ sung responsive
     - Thêm tính năng thêm graph
     - Kiểm tra tương thích với IE 9, 10, 11
+    - Sử dụng style cho trẻ em (http://pixelkit.com/free-ui-kits/vanilla-cream/index.html)
