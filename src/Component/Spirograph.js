@@ -19,13 +19,29 @@ class Spirograph extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
 
-        this.createSpirograph(nextProps);
+        const reducer = (value1, value2) => (value1 || value2);
 
-        return true;
+        const isPropsChanged = 
+                Object.keys(nextProps)
+                    .filter(state => state !== "backgroundColor")
+                    .map(state => {
+                        if (nextProps[state] === this.props[state]) { return true;}
+                        else { return false}
+                    })
+                    .reduce(reducer);
+
+        return isPropsChanged;
+
+    }
+
+    componentDidUpdate(nexProps, nextState, snapshot) {
+        this.createSpirograph(nexProps);
     }
 
     render() {
-        return <g className="chart" />;
+        return <g className="chart" >
+            <g/>
+        </g>;
     }
 
     createSpirographOutside(fixedCircleRadius, k, holeOffsetDistance) {
@@ -75,14 +91,14 @@ class Spirograph extends Component {
         }
         let svg;
         let svgPath;
-        
+
         d3Select(".graph").remove();
 
         svg = d3Select(".chart")
             .append("g")
             .attr("class", "graph")
             .attr("transform", `translate(${centerPoint.x}, ${centerPoint.y})`)
-        
+
         svgPath = svg.append("path")
             .attr("class", "drawing-arc")
             .style("stroke", strokeColor)
@@ -101,7 +117,7 @@ class Spirograph extends Component {
             height: 600
         };
 
-        svgPath = this.createSvgPath(size, config.color );
+        svgPath = this.createSvgPath(size, config.color);
 
         path = this.createSpirographInside(
             100,
@@ -122,10 +138,7 @@ class Spirograph extends Component {
             .duration(config.animationDuration)
             .ease(d3EaseLinear)
             .style("stroke-dashoffset", 0)
-        
     }
-
-    
 }
 
 export default Spirograph;

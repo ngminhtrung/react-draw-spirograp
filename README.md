@@ -8,7 +8,7 @@
     - Giúp vẽ các spirograph tương tự ở [đây](https://kipalog.com/posts/Ve-Spirograph-bang-D3-js)
 - Chức năng: Vẽ siprograph dựa vào các tham số như: (1) Màu nền, (2) màu viền, (3) tỷ lệ R/r, (4) Offset Hole, và (5) Thời gian vẽ
 - Trình duyệt hỗ trợ: Chrome
-- Link sản phẩm ở đây: http://travisnguyen.net/react-draw-spirograph/
+- Link sản phẩm ở đây: http://ngminhtrung.github.io/react-draw-spirograph/
 - Minh họa:
 
 ![Kính vạn hoa](./illustration.gif)
